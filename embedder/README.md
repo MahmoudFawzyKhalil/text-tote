@@ -28,6 +28,17 @@ python -m build
 
 ## Configuration
 
+For deployment as a server: use environment variables
+
+For local dev and tests of CLI app:
+
+```
+./settings.ini - local dev
+./tests/settings.ini - for tests
+```
+
+For installed CLI app:
+
 ```ini
 # Keys are shown in the format
 # KEY=default-value
