@@ -1,4 +1,4 @@
-from src.text_tote_embedder.cli import cli
+from src.text_tote_embedder import cli
 
 
 def main():

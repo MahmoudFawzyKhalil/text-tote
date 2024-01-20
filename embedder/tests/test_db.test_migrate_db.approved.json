@@ -1,0 +1,30 @@
+{
+    "resource": {
+        "columns": [
+            {
+                "is_primary_key": true,
+                "name": "id",
+                "type": "INTEGER"
+            },
+            {
+                "is_primary_key": false,
+                "name": "url",
+                "type": "TEXT"
+            },
+            {
+                "is_primary_key": false,
+                "name": "title",
+                "type": "TEXT"
+            }
+        ]
+    },
+    "schema_version": {
+        "columns": [
+            {
+                "is_primary_key": true,
+                "name": "version",
+                "type": "INTEGER"
+            }
+        ]
+    }
+}
