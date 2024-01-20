@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+texttote = "text_tote_embedder.cli.app:main"
+
+[project]
+name = "text_tote_embedder"
+
+version = "0.0.1"
+authors = [
+    { name = "Mahmoud Fawzy", email = "mahmoudfawzykhalil98@gmail.com" },
+]
+description = "Embedder components for text-tote and standalone CLI semantic search app"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/MahmoudFawzyKhalil/text-tote"
+Issues = "https://github.com/MahmoudFawzyKhalil/text-tote/issues"

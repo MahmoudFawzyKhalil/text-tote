@@ -1,0 +1,3 @@
+-r common.txt
+# Development
+pytest==7.4.4
