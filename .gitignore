@@ -6,3 +6,4 @@ venv
 *.received.*
 texttote.db
 .idea
+graby/vendor
