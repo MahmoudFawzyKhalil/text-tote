@@ -2,7 +2,7 @@
 
 Converts web pages or text into vectors for use in vector similarity search.
 Used by TextTote Server as a service.
-Can also be used as a standalone CLI application powered by `typer` and `sqlite-vss`.
+Can also be used as a standalone CLI application `texttote`.
 
 ## Usage
 
@@ -15,15 +15,14 @@ python -m venv venv
 source venv/bin/activate
 pip install -r requirements/dev.txt
 
-# Test with diff reporter being IntelliJ
-# See https://github.com/approvals/ApprovalTests.Python.PytestPlugin
+# Install as editable site-package - https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html
+pip install -e .
+# Test with  IntelliJ as the diff reporter - https://github.com/approvals/ApprovalTests.Python.PytestPlugin
 python -m pytest --approvaltests-add-reporter="idea" --approvaltests-add-reporter-args="diff";
 
 # Build standalone CLI
 pip install build
 python -m build
-
-# TODO build service
 ```
 
 ## Configuration
