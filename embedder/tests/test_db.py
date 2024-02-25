@@ -1,30 +1,33 @@
 import os
+import sqlite3
 
 import approvaltests
 
-from src.text_tote_embedder import db
-from src.text_tote_embedder.configuration import appconfig
+from text_tote_embedder.cli import db
+from text_tote_embedder.configuration import config
 
 
 def test_migrate_db():
+    # Arrange
+    delete_db()
+    db.create_db()
+
+    # Act
+    db.migrate_db()
+
+    # Assert
+    metadata = get_table_metadata(db.create_connection())
+    approvaltests.verify_as_json(metadata)
+
+
+def delete_db() -> None:
     try:
-        # Arrange
-        db.create_db()
-
-        # Act
-        db.migrate_db()
-
-        # Assert
-        db_connection = db.create_connection()
-        metadata = get_table_metadata(db_connection)
-        approvaltests.verify_as_json(metadata)
-    finally:
-        # Cleanup
-        # os.remove(appconfig.db_path)
+        os.remove(config.db_path)
+    except FileNotFoundError:
         pass
 
 
-def get_table_metadata(connection):
+def get_table_metadata(connection: sqlite3.Connection):
     cursor = connection.cursor()
 
     # Get a list of all tables in the database
@@ -35,8 +38,7 @@ def get_table_metadata(connection):
     table_metadata = {}
 
     # Loop through each table and retrieve metadata
-    for table in tables:
-        table_name = table[0]
+    for table_name, in tables:
         table_metadata[table_name] = {}
 
         # Get table definition and metadata
@@ -48,11 +50,11 @@ def get_table_metadata(connection):
         for column in columns:
             column_name = column[1]
             column_type = column[2]
-            is_primary_key = column[5]
+            is_primary_key = bool(column[5])
             table_metadata[table_name]['columns'].append({
                 'name': column_name,
                 'type': column_type,
-                'is_primary_key': bool(is_primary_key)
+                'is_primary_key': is_primary_key
             })
 
     return table_metadata
