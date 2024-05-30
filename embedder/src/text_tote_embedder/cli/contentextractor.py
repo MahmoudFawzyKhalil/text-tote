@@ -40,7 +40,7 @@ class Content:
     source_author_social_media_accounts_urls: str
     source_author_social_media_accounts_platforms: str
 #
-# def extract_content(url) -> Content:
+def extract_content(url) -> Content:
 #     """
 #     Extracts the main content of a URL (article or YouTube video) as stripped-down HTML and plain text.
 #
@@ -51,24 +51,24 @@ class Content:
 #         tuple: A tuple containing the title and clean text summary of the URL content.
 #     """
 
-url = 'https://www.kdnuggets.com/sql-simplified-crafting-modular-and-understandable-queries-with-ctes'
+    url = 'https://www.kdnuggets.com/sql-simplified-crafting-modular-and-understandable-queries-with-ctes'
 
-# Fetch the HTML content of the URL
-response = requests.get(url)
-html = response.content
+    # Fetch the HTML content of the URL
+    response = requests.get(url)
+    html = response.content
 
-# Parse the HTML using readability
-doc = Document(html)
+    # Parse the HTML using readability
+    doc = Document(html)
 
-# Extract the main content
-title = doc.title()
-summary = doc.summary(html_partial=True)
+    # Extract the main content
+    title = doc.title()
+    summary = doc.summary(html_partial=True)
 
-print()
-print("Title:", title)
+    print()
+    print("Title:", title)
 
-# Convert HTML summary to plain text
+    # Convert HTML summary to plain text
 
-soup = BeautifulSoup(summary, 'html.parser')
-clean_text = soup.get_text(separator='\n')
-print("Clean Text:", clean_text)
+    soup = BeautifulSoup(summary, 'html.parser')
+    clean_text = soup.get_text(separator='\n')
+    print("Clean Text:", clean_text)

@@ -24,11 +24,11 @@ def migrate_db() -> None:
     Migrate the database objects to the latest version. This will create the database if it doesn't exist.
     """
     create_db()
-    db_connection = create_connection()
+    db_connection = _create_connection()
     dbmigrator.migrate_db(db_connection)
 
 
-def create_connection() -> sqlite3.Connection:
+def _create_connection() -> sqlite3.Connection:
     uri = f"file:{config.db_path}?mode=rw"
     db_connection = sqlite3.connect(uri, uri=True)
     _load_extensions(db_connection)

@@ -16,7 +16,7 @@ def test_migrate_db():
     db.migrate_db()
 
     # Assert
-    metadata = get_table_metadata(db.create_connection())
+    metadata = get_table_metadata(db._create_connection())
     approvaltests.verify_as_json(metadata)
 
 

@@ -1,4 +1,6 @@
+import logging
 import os
+import sys
 from dataclasses import dataclass
 from os import path
 
@@ -19,6 +21,7 @@ class AppConfig:
     db_path: str
     model_name: str
     model_vector_size: int
+    log_level: str
 
 
 config = AppConfig(
@@ -32,4 +35,15 @@ config = AppConfig(
     # Model msmarco-MiniLM-L-6-v3 chosen because our queries are asymmetric queries
     model_name=autoconfig('MODEL_NAME', default='all-MiniLM-L6-v2'),
     model_vector_size=autoconfig('MODEL_VECTOR_SIZE', cast=int, default=384),
+    log_level=autoconfig('LOG_LEVEL', default='INFO'),
 )
+
+# Configure logging
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+handler = logging.StreamHandler(sys.stdout)
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+
+root.addHandler(handler)
